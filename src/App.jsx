@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { URL } from './constants.js'
 import './App.css'
+import { Answer } from './Answers.jsx'
 function App() {
   const [question, setQuestion] = useState('')
   const [result, setResult] = useState('')
@@ -48,6 +49,7 @@ function App() {
         <div className="container h-100 overflow-scroll">
           <div className="text-white">
             {result}
+            <Answer />
             </div>
         
         </div>
