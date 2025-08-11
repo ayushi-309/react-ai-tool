@@ -10,7 +10,7 @@ function App() {
       {
         "parts": [
           {
-            "text": question,
+            "text": question
           }
         ]
       }
@@ -26,8 +26,15 @@ function App() {
     })
     
     response = await response.json();
-    console.log(response.candidates[0].content.parts[0].text)
-    setResult(response.candidates[0].content.parts[0].text)
+    let dataString = response.candidates[0].content.parts[0].text
+    dataString = dataString.split("* ")
+    dataString = dataString.map((item)=>item.trim()) 
+
+
+    console.log(dataString)
+    // console.log(response.candidates[0].content.parts[0].text)
+    // setResult(response.candidates[0].content.parts[0].text)
+    setResult(dataString)
     }
 
 
@@ -36,11 +43,10 @@ function App() {
   return (
     <div className="grid grid-cols-5 h-screen text-center">
       <div className="col-span-1 bg-zinc-800" >
-        hello
       </div>
       <div className="col-span-4 p-10">
         <div className="container h-100 overflow-scroll">
-          <div className="text-white font-bold">
+          <div className="text-white">
             {result}
             </div>
         
@@ -51,12 +57,13 @@ function App() {
   mx-auto 
   rounded-4xl
   border 
-  border-zinc-400 
+  border-zinc-700 
   flex h-16 
-  justify-between 
-  items-center 
-  p-5 
-  mt-10">
+  items-center
+  justify-between
+  mt-10
+  
+  ">
           <input type="text" value={question} onChange={(event) => setQuestion(event.target.value)} className="w-full h-full p-3 outline-none" placeholder="Ask me anything..." />
           <button onClick={() => askQuestion()}>Ask</button>
         </div>
