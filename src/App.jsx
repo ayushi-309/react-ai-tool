@@ -19,24 +19,24 @@ function App() {
   }
 
 
-  const askQuestion = async() => {
+  const askQuestion = async () => {
     // console.log(question)
     let response = await fetch(URL, {
       method: 'POST',
       body: JSON.stringify(payLoad)
     })
-    
+
     response = await response.json();
     let dataString = response.candidates[0].content.parts[0].text
     dataString = dataString.split("* ")
-    dataString = dataString.map((item)=>item.trim()) 
+    dataString = dataString.map((item) => item.trim())
 
 
     console.log(dataString)
     // console.log(response.candidates[0].content.parts[0].text)
     // setResult(response.candidates[0].content.parts[0].text)
     setResult(dataString)
-    }
+  }
 
 
 
@@ -48,10 +48,18 @@ function App() {
       <div className="col-span-4 p-10">
         <div className="container h-100 overflow-scroll">
           <div className="text-white">
-            {result}
-            <Answer />
-            </div>
-        
+
+            <ul>
+            {/* {result} */}
+            {
+              result && result.map((item,index)=>(
+                <li><Answer ans={item} key={index} /></li>
+              ))
+            }
+            </ul>
+
+          </div>
+
         </div>
         <div className="bg-zinc-800 
   w-1/2 

@@ -1,7 +1,8 @@
- export const Answer=()=>{
+ export const Answer=(ans,key)=>{
+    console.log(ans,key)
     return(
-        <div>
-            <h1>Answer Component</h1>
-        </div>
+      <>
+       {ans}
+</>
     )
 }
