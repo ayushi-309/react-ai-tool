@@ -1,13 +1,25 @@
 
 import { useState } from 'react';
 import './App.css';
-import { URL } from './constants.js';
+import URL from './constants.js';
+
+
 function App() {
 
   const [question, setQuestion] = useState('');
 
-  const askQuestion = () => {
-    console.log(question,setQuestion);
+ const payload = {
+    "contents": [{
+      "parts": [{ "text": "Explain how AI works" }],
+    }]
+  }
+
+  const askQuestion = async () => {
+    let response = await fetch(URL, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
+
   }
 
   return (
@@ -21,8 +33,8 @@ function App() {
         </div>
         <div className="bg-zinc-800 w-1/2 p-1 pr-5 text-white m-auto rounded-4xl
         border border-zinc-700 flex h-16 ">
-          <input type="text" value={question} onChange={(event)=>setQuestion(event.target.value)} className="w-full h-full p-3 outline-none" placeholder="Ask me anything" />
-          <button onClick={()=>askQuestion}>Ask</button>
+          <input type="text" value={question} onChange={(event) => setQuestion(event.target.value)} className="w-full h-full p-3 outline-none" placeholder="Ask me anything" />
+          <button onClick={() => askQuestion}>Ask</button>
         </div>
       </div>
     </div>
