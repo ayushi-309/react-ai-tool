@@ -7,6 +7,7 @@ import URL from './constants.js';
 function App() {
 
   const [question, setQuestion] = useState('');
+  const [result, setResult] = useState(undefined);
 
  const payload = {
     "contents": [{
@@ -20,6 +21,12 @@ function App() {
       body: JSON.stringify(payload),
     })
 
+    response = await response.json();
+    // console.log(response.candidates[0].content.parts[0].text);
+    // Here you can handle the response and
+    setResult(response.candidates[0].content.parts[0].text);
+
+
   }
 
   return (
@@ -29,7 +36,7 @@ function App() {
       </div>
       <div className='col-span-4 p-10'>
         <div className='container h-110'>
-
+       {result}
         </div>
         <div className="bg-zinc-800 w-1/2 p-1 pr-5 text-white m-auto rounded-4xl
         border border-zinc-700 flex h-16 ">
