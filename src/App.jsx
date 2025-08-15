@@ -20,7 +20,7 @@ function App() {
     })
 
     response = await response.json();
-    // console.log(response.caandidate[0].contents.parts[0].text);
+    console.log(response.caandidate[0].contents.parts[0].text);
     setResult(response.caandidate[0].contents.parts[0].text)
   }
   return (
